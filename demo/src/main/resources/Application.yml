@@ -1,0 +1,58 @@
+server:
+  port: '8082'
+config:
+  message: '"Hello ram"'
+
+spring:
+  profiles:
+    active: prod
+
+---
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    password: '1234'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+
+---
+
+spring:
+  profiles:
+    active: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    password: '1234'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+
+spring:
+  profiles:
+    active: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    password: '1234'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
